@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Guessing Game</title>
+
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/skeleton.css">
+  <script type="text/javascript" src = "js/rockpaperscrs.js"></script>
+</head>
+<body>
+  <div class="container">
+    <div class="row">
+      <div class="twelve columns">
+        <p>Welcome to the Rock Paper Scissors game.
+          Please select one of the buttons below and see if you win.
+        </p>
+      </div>
+    </div>
+    <div class = "row">
+      <div class="four columns">
+        <input type="button" value="ROCK" onclick="userSelects('rock')">
+      </div>
+       <div class="four columns">
+        <input type="button" value="PAPER" onclick="userSelects('paper')">
+      </div>
+       <div class="four columns">
+        <input type="button" value="SCISSORS" onclick="userSelects('scissors')">
+      </div>
+    </div>
+    <div class="row">
+      <div class="four columns">
+        <p>The result is: <span id="gameResult"></span></p>
+      </div>
+      <div class="four columns">
+        <p>Computer's Choice is: <span id="compChoice"></span></p>
+      </div>
+      <div class="four columns">
+        <p>Your Win Rate is: <span id="winRate"></span></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
