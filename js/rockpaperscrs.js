@@ -4,28 +4,33 @@ where 1 = Rock
 3 = Scissors */
 
 
-var userChoice, computerChoice, numberOfWins,numberOfAttempts,userWin;
+var numberofWins,numberofAttempts;
 numberofWins = 0;
-numberOfAttempts = 0;
+numberofAttempts = 0;
 var userSelects = function(choice){
   if(choice == "rock"){
-    userChoice = 1;
+    this.userChoice = 1;
   }
   else if(choice == "paper"){
-    userChoice = 2;
+    this.userChoice = 2;
   }
   else if(choice == "scissors"){
-    userChoice = 3;
-  }
-  cpuSelects();
-  CompareChoices(userChoice,computerChoice);
-  updateWinRate();
-}
+    this.userChoice = 3;
+  };
+  return this;
+};
+
+var beginGame = function(){
+    compareChoices(userSelects().userChoice,cpuSelects().computerChoice);
+    updateWinRate(compareChoices().userWin);
+};
+
 var cpuSelects = function(){
-  computerChoice = Math.floor((Math.random()*3)+1);
+  this.computerChoice = Math.floor((Math.random()*3)+1);
+  return this;
 }
 
-function CompareChoices(userChoice,computerChoice){
+var compareChoices = function(userChoice,computerChoice){
   if(userChoice == 1){
     if(computerChoice == 1){
       //output the results are even
@@ -34,7 +39,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Even</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Rock</span>"
-      userWin = false;
+      this.userWin = false;
     }
     else if(computerChoice == 2){
       //output that the user lost
@@ -43,7 +48,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Lose</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Paper</span>"
-      userWin= false;
+      this.userWin = false;
     }
     else if(computerChoice == 3){
       //output that the user won
@@ -52,7 +57,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Win</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Scissors</span>"
-      userWin = true;
+      this.userWin = true;
     }
   }
   else if(userChoice == 2){
@@ -63,7 +68,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Win</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Rock</span>"
-      userWin = true;
+      this.userWin = true;
     }
     else if(computerChoice == 2){
       //output the results are even
@@ -72,7 +77,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Even</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Paper</span>"
-      userWin = false;
+      this.userWin = false;
     }
     else if (computerChoice == 3){
       //output user lost
@@ -81,7 +86,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Lose</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Scissors</span>"
-      userWin = false;
+      this.userWin = false;
     }
   }
   else if(userChoice == 3){
@@ -92,7 +97,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Lose</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Rock</span>"
-      userWin = false;
+      this.userWin = false;
     }
     else if(computerChoice == 2){
       //output user wins
@@ -101,7 +106,7 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Win</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Paper</span>"
-      userWin = true;
+      this.userWin = true;
     }
     else if(computerChoice == 3){
       //output results are even
@@ -110,22 +115,23 @@ function CompareChoices(userChoice,computerChoice){
       gameResult.innerHTML="<span>Even</span>"
       var compChoice = document.getElementById("compChoice");
       compChoice.innerHTML="<span>Scissors</span>"
-      userWin = false;
+      this.userWin = false;
     }
   }
-}
-function updateWinRate(){
-  if(userWin==true){
+  return this;
+};
+var updateWinRate = function(resultOfGame){
+  if(resultOfGame==true){
     numberofWins++;
-    numberOfAttempts++;
+    numberofAttempts++;
   }
   else{
-    numberOfAttempts++;
+    numberofAttempts++;
   }
-  var winRate = parseInt((numberofWins/numberOfAttempts)*100);
+  var winRate = parseInt((numberofWins/numberofAttempts)*100);
   var displayWinRate = document.getElementById("winRate");
       displayWinRate.innerHTML= "<span>"+winRate+"%</span>";
 
-}
+};
 
 
